@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue JS pour les pros</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .box{
+            padding: 100px 0;
+            width: 400px;
+            background-color: #ddd;
+            margin: 20px;
+            text-align: center;
+            display: inline-block;
+        }
+        .card{
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            background-color: #ddd;
+            margin-bottom: 10px;
+        }
+        .pro{
+            background-color: blueviolet;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Salut {{titre}}... 
+            <span v-if="showIcon">{{icon}}</span>
+        </h1>
+        <hr>
+        <div class="card" v-for="user in users" :class="{pro: user.isPro}" @click="togglePro(user)">
+            <img width="80" :src="user.image" :alt="user.autheur">
+            <div>
+                <h3>{{user.autheur}} {{user.age}}</h3>
+            <p v-show="showBio">{{user.bio}}</p>
+            <a :href="user.url" target="_blank">google</a>
+            </div>
+        </div>
+        <div>
+            <button>
+                <span v-on:click="connexion" v-if="!isConnected">Connexion</span>
+                <span v-on:click="deconnexion" v-else>Deconnexion</span>
+            </button>
+            <button v-on:click="augmenterAge">Augmenter</button>
+            <button v-on:click="diminuerAge">Diminuer</button>
+        </div>
+        <div class="box" v-on:mouseover="HandleMouse">Mouse over (entrer)</div>
+        <div class="box" @mouseleave="HandleMouse">Mouse leave (sortir)</div>
+        <div class="box" @dblclick="HandleMouse">Mouse double click (enter)</div>
+        <div class="box" @mousemove="DeplacementSouri($event, 10)">Position X:{{x}} Y:{{y}}</div>
+        <hr>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
