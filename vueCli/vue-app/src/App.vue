@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import ModalComponent from './components/ModalComponent.vue';
+import ModalComponent from './components/ModalComponent';
 
 export default {
   name: 'App',

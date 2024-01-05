@@ -7,22 +7,23 @@
 </template>
 
 <script>
-    export default ModalComponent({
+    export default {
         data(){
             return{
                 content: 'Contenu de notre model'
             }
         }
-    })
+    }
 </script>
 
 <style>
     .modal-bg{
         background: rgba(0, 0, 0, 0.5);
         width: 100%;
-        height: 100%;
+        height: 70%;
         position: fixed;
-        top: 0;
+        bottom: 0;
+        left: 0;
     }
     .modal{
         width: 400px;
