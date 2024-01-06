@@ -2,7 +2,7 @@
   <h1>{{ title }}</h1>
   <input type="text" ref="name">
   <button @click="handleClick">clicker moi</button>
-  <ModalComponent />
+  <ModalComponent :entete="entete" theme="dark"/>
 </template>
 
 <script>
@@ -15,7 +15,8 @@ export default {
   },
   data(){
     return{
-      title: "Bienvenue dans notre toute premiere app VueJs."
+      title: "Bienvenue dans notre toute premiere app VueJs.",
+      entete: "pre-inscrivez vous maintenant",
     }
   },
   methods: {
@@ -40,6 +41,6 @@ export default {
 
 h1{
   color: blueviolet;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 </style>
