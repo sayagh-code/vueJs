@@ -2,7 +2,7 @@
   <h1>{{ title }}</h1>
   <input type="text" ref="name">
   <button @click="handleClick">clicker moi</button>
-  <div v-if="showModal">
+  <teleport to="#modals" v-if="showModal">
     <ModalComponent :entete="entete" theme="dark" @close="toggleModal">
       <p>slot Test</p>
       <template v-slot:liens>
@@ -13,7 +13,7 @@
         <p>Votre text par defaut par ici</p>
       </template>
     </ModalComponent>
-  </div>
+  </teleport>
   
 </template>
 
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style>
-#app {
+#app, #modals {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
