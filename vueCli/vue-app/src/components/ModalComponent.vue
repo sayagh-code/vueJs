@@ -1,9 +1,16 @@
 <template>
-    <div class="modal-bg">
+    <div @click.self="closeModal" class="modal-bg">
         <div class="modal" :class="{dark: theme==='dark', light: theme==='light'}">
             <h1>Titre du model</h1>
             <h4>{{ entete }}</h4>
             <p>{{ content }}</p>
+            <slot></slot>
+            <hr>
+            <slot name="defaut"></slot>
+            <hr>
+            <div class="actions">
+                <slot name="liens"></slot>
+            </div>
         </div>
     </div>
 </template>
@@ -14,6 +21,11 @@
         data(){
             return{
                 content: 'Contenu de notre model',
+            }
+        },
+        methods: {
+            closeModal(){
+                this.$emit('close')
             }
         }
     }
@@ -29,9 +41,9 @@
         left: 0;
     }
     .modal{
-        width: 400px;
-        padding: 40px;
-        margin: 100px auto;
+        width: 500px;
+        padding: 30px;
+        margin: 60px auto;
         background: #fff;
         border-radius: 10px;
     }
@@ -43,6 +55,10 @@
         background: #111;
         color: #fff;
     }
+    .actions{
+        margin: 50px 0;
+    }
+    
     .light{
         background: #fff;
         color: #111;

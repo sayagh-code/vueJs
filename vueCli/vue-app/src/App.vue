@@ -2,7 +2,19 @@
   <h1>{{ title }}</h1>
   <input type="text" ref="name">
   <button @click="handleClick">clicker moi</button>
-  <ModalComponent :entete="entete" theme="dark"/>
+  <div v-if="showModal">
+    <ModalComponent :entete="entete" theme="dark" @close="toggleModal">
+      <p>slot Test</p>
+      <template v-slot:liens>
+        <a href="#">inscrivez-vous</a>
+        <a href="#">Encore plus ...</a>
+      </template>
+      <template v-slot:defaut>
+        <p>Votre text par defaut par ici</p>
+      </template>
+    </ModalComponent>
+  </div>
+  
 </template>
 
 <script>
@@ -17,13 +29,21 @@ export default {
     return{
       title: "Bienvenue dans notre toute premiere app VueJs.",
       entete: "pre-inscrivez vous maintenant",
+      showModal: false
     }
   },
   methods: {
     handleClick(){
-      console.log(this.$refs.name);
+      console.log(this.$refs.name.value);
       this.$refs.name.classList.add('active')
+      if(this.$refs.name.value=="123")
+        this.toggleModal();
+      else
       this.$refs.name.focus()
+
+    },
+    toggleModal(){
+        this.showModal= !this.showModal
     }
   }
 }
@@ -42,5 +62,29 @@ export default {
 h1{
   color: blueviolet;
   font-size: 3rem;
+}
+.dark a{
+        margin: 0 30px;
+        border: solid 1px #ebebeb;
+        padding: 15px 20px;
+        border-radius: 15px;
+        text-decoration: none;
+        color: #fff;
+}
+.dark a:hover{
+  background: #fff;
+  color: #111;
+}
+.light a{
+        margin: 0 30px;
+        border: solid 1px #0e0e0e;
+        padding: 15px 20px;
+        border-radius: 15px;
+        text-decoration: none;
+        color: #090909;
+    }
+.light a:hover{
+  background: #111;
+  color: #fff;
 }
 </style>
